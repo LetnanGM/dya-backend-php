@@ -1,5 +1,3 @@
-{% import "macros/team.njk" as team %}
-
 <section class="py-5">
   <div class="container">
     <div class="row text-center mb-5">
@@ -12,9 +10,13 @@
     </div>
 
     <div class="row g-4 justify-content-center">
-      {% for profile in teams %} {{ team.team(profile) }} {% else %}
-      <p class="text-muted">There's have problem to show the developers.</p>
-      {% endfor %}
+      <?php if (!empty($teams)) : ?>
+        <?php foreach ($teams as $profile) : ?>
+          <?php partial('partials/team_card', ['profile' => $profile]); ?>
+        <?php endforeach; ?>
+      <?php else : ?>
+        <p class="text-muted">There's have problem to show the developers.</p>
+      <?php endif; ?>
     </div>
   </div>
 </section>

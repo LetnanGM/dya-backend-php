@@ -1,13 +1,11 @@
-<div id="popup-place"></div>
-<template
-  hx-trigger="emailSuccess from:body"
-  hx-target="#popup-place"
-  hx-swap="innerHTML"
->
-  <div class="alert alert-success">
-    <strong>Success!</strong> Mail sent! (Popup will be closed 3 seconds..)
+<?php $flash = flash_pull(); ?>
+<div id="popup-place" aria-live="polite">
+  <?php if ($flash) : ?>
+  <div class="alert alert-<?= $flash['type'] === 'success' ? 'success' : 'danger' ?> mb-0" role="alert">
+    <?= e($flash['message']) ?>
   </div>
-</template>
+  <?php endif; ?>
+</div>
 
 <section id="contact" class="py-5 bg-light">
   <div class="container py-4">
@@ -58,9 +56,9 @@
                 <div>
                   <small class="text-muted d-block">EMAIL</small>
                   <a
-                    href="mailto:{{ site.email }}"
+                    href="mailto:<?= e($site['email']) ?>"
                     class="text-white text-decoration-none small font-monospace"
-                    >{{ site.email }}</a
+                    ><?= e($site['email']) ?></a
                   >
                 </div>
               </div>
@@ -75,11 +73,11 @@
                 <div>
                   <small class="text-muted d-block">GITHUB</small>
                   <a
-                    href="https://github.com/{{ site.social.Github }}"
+                    href="https://github.com/<?= e($site['social']['Github']) ?>"
                     target="_blank"
                     class="text-white text-decoration-none small font-monospace"
                     rel="noopener nofollow"
-                    >https://github.com/{{ site.social.Github }}</a
+                    >https://github.com/<?= e($site['social']['Github']) ?></a
                   >
                 </div>
               </div>
@@ -98,7 +96,18 @@
         <div class="col-lg-7 bg-white p-5">
           <h4 class="fw-bold text-dark mb-4">Send a Message</h4>
 
-          <form hx-post="/v1/email/send" hx-target="#button-area" method="POST">
+          <form
+            id="contact-form"
+            action="<?= e(url('contact.php')) ?>"
+            method="POST"
+            data-ajax
+          >
+            <input type="hidden" name="csrf" value="<?= e(csrf_token()) ?>" />
+            <!-- Honeypot anti-spam: harus tetap kosong, disembunyikan dari manusia -->
+            <div style="position: absolute; left: -9999px" aria-hidden="true">
+              <label for="website">Website</label>
+              <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
+            </div>
             <div class="row g-3">
               <div class="col-md-6">
                 <div class="form-floating">
@@ -107,6 +116,7 @@
                     class="form-control border-0 bg-light"
                     id="name"
                     name="name"
+                    maxlength="100"
                     placeholder="John Doe"
                     required
                     style="border-radius: 8px"
@@ -126,7 +136,7 @@
                     required
                     style="border-radius: 8px"
                   />
-                  <label for="nmail" class="text-muted">Email Address</label>
+                  <label for="email" class="text-muted">Email Address</label>
                 </div>
               </div>
 
@@ -137,6 +147,7 @@
                     class="form-control border-0 bg-light"
                     id="subject"
                     name="subject"
+                    maxlength="150"
                     placeholder="Project Idea"
                     required
                     style="border-radius: 8px"
@@ -151,6 +162,7 @@
                     class="form-control border-0 bg-light"
                     id="message"
                     name="message"
+                    maxlength="5000"
                     placeholder="Leave a message here"
                     style="height: 150px; border-radius: 8px"
                     required

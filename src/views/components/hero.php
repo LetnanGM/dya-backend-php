@@ -25,10 +25,10 @@
         class="name-ghost font-display fw-bold display-fluid m-0"
         aria-hidden="true"
       >
-        {{ site.companyName }}
+        <?= e($site['companyName']) ?>
       </h1>
       <h1 class="name-solid font-display fw-bold display-fluid m-0">
-        {{ site.companyName }}
+        <?= e($site['companyName']) ?>
       </h1>
     </div>
 
@@ -45,7 +45,7 @@
       class="d-flex justify-content-between align-items-end flex-wrap gap-4 mt-4 mt-md-5"
     >
       <div class="d-flex gap-2 flex-wrap">
-        <a href="/projects" class="btn btn-dark rounded-pill px-4 py-2"
+        <a href="#projects" class="btn btn-dark rounded-pill px-4 py-2"
           >View Work ↗</a
         >
         <a href="#contact" class="btn btn-outline-dark rounded-pill px-4 py-2"
@@ -55,14 +55,14 @@
       <div class="d-flex gap-4">
         <div>
           <span class="d-block font-display fw-bold fs-3"
-            >{{ site.cprojects }}+</span
+            ><?= e($site['cprojects']) ?>+</span
           >
           <span class="font-mono text-uppercase small text-secondary"
             >Projects</span
           >
         </div>
         <div>
-          <span class="d-block font-display fw-bold fs-3">{{ site.exp }}</span>
+          <span class="d-block font-display fw-bold fs-3"><?= e($site['exp']) ?></span>
           <span class="font-mono text-uppercase small text-secondary"
             >Years</span
           >
@@ -101,7 +101,7 @@
     >
       <div class="d-flex gap-3 font-mono small text-secondary">
         <a
-          href="https://github.com/{{ site.social.Github }}"
+          href="https://github.com/<?= e($site['social']['Github']) ?>"
           class="link-underline-grow text-secondary"
           target="_blank"
           rel="noopener nofollow"
@@ -115,14 +115,14 @@
           >LinkedIn</a
         >
         <a
-          href="https://instagram.com/{{ site.social.Instagram }}"
+          href="https://instagram.com/<?= e(ltrim($site['social']['Instagram'], '@')) ?>"
           class="link-underline-grow text-secondary"
           target="_blank"
           rel="noopener nofollow"
           >Instagram</a
         >
         <a
-          href="mailto:{{ site.email }}"
+          href="mailto:<?= e($site['email']) ?>"
           class="link-underline-grow text-secondary"
           >Email</a
         >

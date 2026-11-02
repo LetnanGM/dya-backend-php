@@ -1,0 +1,6 @@
+storage/*
+!storage/.gitkeep
+!storage/.htaccess
+.env
+.DS_Store
+node_modules/

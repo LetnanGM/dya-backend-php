@@ -2,7 +2,7 @@
   class="navbar navbar-expand-lg navbar-light mt-md-2 w-auto navbar-glass fixed-top"
 >
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">{{ site.name }}</a>
+    <a class="navbar-brand" href="#"><?= e($site['name']) ?></a>
     <button
       class="navbar-toggler"
       type="button"
@@ -32,16 +32,16 @@
       <div class="offcanvas-body">
         <ul class="navbar-nav ms-auto font-monospace align-items-lg-center">
           <li class="nav-item mx-lg-2 my-2 my-lg-0">
-            <a class="nav-link" href="/#home">Home</a>
+            <a class="nav-link" href="#home">Home</a>
           </li>
           <li class="nav-item mx-lg-2 my-2 my-lg-0">
-            <a class="nav-link" href="/#about">About</a>
+            <a class="nav-link" href="#about">About</a>
           </li>
           <li class="nav-item mx-lg-2 my-2 my-lg-0">
-            <a class="nav-link" href="/#projects">Project</a>
+            <a class="nav-link" href="#projects">Project</a>
           </li>
           <li class="nav-item mx-lg-2 my-2 my-lg-0">
-            <a class="nav-link" href="/#contact">Contact</a>
+            <a class="nav-link" href="#contact">Contact</a>
           </li>
         </ul>
       </div>

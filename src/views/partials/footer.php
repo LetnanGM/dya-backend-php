@@ -3,7 +3,7 @@
     <div class="row g-5">
       <div class="col-lg-5">
         <div class="footer-brand">
-          <h2 class="footer-title">{{ site.companyName }}</h2>
+          <h2 class="footer-title"><?= e($site['companyName']) ?></h2>
 
           <p class="footer-description">
             We build reliable digital solutions that help ideas grow into useful
@@ -35,11 +35,11 @@
         <h3 class="footer-heading">Explore</h3>
 
         <ul class="footer-links">
-          <li><a href="/about">About</a></li>
-          <li><a href="/services">Services</a></li>
-          <li><a href="/projects">Projects</a></li>
-          <li><a href="/blog">Blog</a></li>
-          <li><a href="/contact">Contact</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
       </div>
 
@@ -48,10 +48,10 @@
         <h3 class="footer-heading">Resources</h3>
 
         <ul class="footer-links">
-          <li><a href="/docs">Documentation</a></li>
-          <li><a href="/support">Support</a></li>
-          <li><a href="/privacy">Privacy</a></li>
-          <li><a href="/terms">Terms</a></li>
+          <li><a href="#">Documentation</a></li>
+          <li><a href="#">Support</a></li>
+          <li><a href="#">Privacy</a></li>
+          <li><a href="#">Terms</a></li>
         </ul>
       </div>
 
@@ -64,7 +64,7 @@
           resources.
         </p>
 
-        <form action="/newsletter" method="post" class="newsletter-form">
+        <form action="<?= e(url('newsletter.php')) ?>" method="post" class="newsletter-form">
           <label for="newsletter-email" class="visually-hidden">
             Email address
           </label>
@@ -99,14 +99,14 @@
       <div class="row align-items-center gy-2">
         <div class="col-md-6">
           <p class="footer-copyright mb-0">
-            &copy; 2026 {{ site.companyName }}. All rights reserved.
+            &copy; <?= date('Y') ?> <?= e($site['companyName']) ?>. All rights reserved.
           </p>
         </div>
 
         <div class="col-md-6 text-md-end">
           <p class="footer-credit mb-0">
             Built with <i class="fas fa-heart text-danger"></i> by
-            <a href="/about">{{ site.companyName }}</a>
+            <a href="#about"><?= e($site['companyName']) ?></a>
           </p>
         </div>
       </div>

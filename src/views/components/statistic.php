@@ -25,7 +25,7 @@
         <div class="row g-3">
           <div class="col-6">
             <div class="p-4 border border-dark rounded-0 bg-white">
-              <h3 class="display-6 fw-bold text-dark mb-1">{{ site.exp }}</h3>
+              <h3 class="display-6 fw-bold text-dark mb-1"><?= e($site['exp']) ?></h3>
               <p class="fw-semibold text-dark mb-1 small">Years Experience</p>
               <p class="text-muted mb-0" style="font-size: 0.75rem">
                 Building reliable and modern web solutions.
@@ -36,11 +36,11 @@
           <div class="col-6">
             <div class="p-4 border border-dark rounded-0 bg-white">
               <h3 class="display-6 fw-bold text-dark mb-1">
-                {{ site.cprojects }}+
+                <?= e($site['cprojects']) ?>+
               </h3>
               <p class="fw-semibold text-dark mb-1 small">Projects</p>
               <p class="text-muted mb-0" style="font-size: 0.75rem">
-                Successfully delivered for clients & personal apps.
+                Successfully delivered for clients &amp; personal apps.
               </p>
             </div>
           </div>
