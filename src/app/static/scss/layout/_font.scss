@@ -1,0 +1,9 @@
+@use "../abstract/variables" as v;
+
+.font-display {
+	font-family: v.$font-heading;
+	letter-spacing: -0.03em;
+}
+.font-mono {
+	font-family: v.$font-code;
+}

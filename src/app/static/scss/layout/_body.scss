@@ -1,0 +1,32 @@
+@use "../abstract/variables" as v;
+
+
+body {
+	font-family: v.$font-sans;
+}
+
+.spotlight {
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+	background: radial-gradient( 420px circle at var(--x, 50%) var(--y, 20%), rgba(0, 0, 0, 0.05), transparent 70% );
+}
+
+#repoTab {
+	.nav-link {
+		color: v.$color-muted;
+		border: none;
+		border-bottom: 2px solid transparent;
+		border-radius: 0;
+		&:hover {
+			&:not(.active) {
+				border-bottom: 2px solid var(--line);
+			}
+		}
+	}
+	.nav-link.active {
+		color: v.$color-black;
+		background: transparent;
+		border-bottom: 2px solid crimson;
+	}
+}

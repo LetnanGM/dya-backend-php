@@ -1,0 +1,68 @@
+@use "../abstract/variables" as v;
+@use "../layout/animation" as anima;
+
+.name-wrap {
+	position: relative;
+	line-height: 0.92;
+	.display-fluid {
+		font-size: clamp(48px, 10vw, 140px);
+	}
+}
+
+.name-ghost {
+	position: absolute;
+	top: 6px;
+	left: 6px;
+	color: v.$color-transparent;
+	-webkit-text-stroke: 1px var(--line);
+	z-index: 0;
+	user-select: none;
+}
+
+.name-solid {
+	position: relative;
+	z-index: 1;
+}
+
+.caret {
+	display: inline-block;
+	width: 1px;
+	height: 1em;
+	background: #000;
+	animation: blink 1s step-end infinite;
+	vertical-align: -2px;
+}
+
+.status-dot {
+	width: 7px;
+	height: 7px;
+	border-radius: 50%;
+	background: #000;
+	animation: pulse 2s ease-in-out infinite;
+	display: inline-block;
+}
+
+.link-underline-grow {
+	text-decoration: none;
+	position: relative;
+	&::after {
+		content: "";
+		position: absolute;
+		left: 0;
+		bottom: -3px;
+		width: 0;
+		height: 1px;
+		background: #000;
+		transition: width 0.25s ease;
+	}
+	&:hover {
+		&::after {
+			width: 100%;
+		}
+	}
+}
+
+.bob {
+	animation: bob 1.6s ease-in-out infinite;
+	display: inline-block;
+}

@@ -1,0 +1,41 @@
+/* ghost outline duplicate behind the name */
+/* blinking caret */
+@keyframes blink {
+	50% {
+		opacity: 0;
+	}
+}
+/* status dot pulse */
+@keyframes pulse {
+	0%,100% {
+		opacity: 1;
+		transform: scale(1);
+	}
+	50% {
+		opacity: 0.35;
+		transform: scale(0.8);
+	}
+}
+/* marquee */
+@keyframes scroll-left {
+	from {
+		transform: translateX(0);
+	}
+	to {
+		transform: translateX(-50%);
+	}
+}
+/* scroll cue bob */
+@keyframes bob {
+	0%,100% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(4px);
+	}
+}
+
+/* cursor spotlight */
+/* underline-on-hover for text links, without extra classes */
+/* language dot, ala GitHub repo tech list */
+/* tab underline biar senada sama aksen crimson yang udah ada */

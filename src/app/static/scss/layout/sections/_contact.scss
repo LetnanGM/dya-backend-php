@@ -1,0 +1,20 @@
+@use "../../abstract/variables" as v;
+
+.kontakku {
+	position: relative;
+	z-index: 0;
+	background-color: v.$bg-dark;
+	&::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-image: linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px);
+		background-size: 20px 20px;
+		z-index: -1;
+		opacity: 0.15;
+		pointer-events: none;
+	}
+}

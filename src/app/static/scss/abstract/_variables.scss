@@ -1,0 +1,40 @@
+:root {
+  // Colors
+  --color-transparent: transparent;
+  --color-muted: #6c757d;
+  --color-black: #000;
+  --color-primary: #0d6efd;
+  --color-white: #fff;
+
+  // Fonts
+  --font-sans: "Inter", -apple-system, sans-serif;
+  --font-mono: monospace;
+  --font-heading: "Space Grotesk", sans-serif;
+  --font-code: "JetBrains Mono", monospace;
+
+  // Backgrounds
+  --bg-dark: #1a1a1a;
+  --bg-light: #f8f9fa;
+  --bg-primary: #0d6efd;
+
+  // custom
+  --transparent-color: rgba(255, 255, 255, 0.03);
+	--line: #e4e4e4;
+}
+
+$color-transparent: var(--color-transparent);
+$color-muted: var(--color-muted);
+$color-black: var(--color-black);
+$color-primary: var(--color-primary);
+$color-white: #fff;
+
+$font-sans: var(--font-sans);
+$font-mono: var(--font-mono);
+$font-heading: var(--font-heading);
+$font-code: var(--font-code);
+
+$bg-dark: var(--bg-dark);
+$bg-light: var(--bg-light);
+$bg-primary: var(--bg-primary);
+
+$border-color: var(--color-white)

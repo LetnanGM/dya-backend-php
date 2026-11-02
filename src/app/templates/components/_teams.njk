@@ -1,0 +1,20 @@
+{% import "macros/team.njk" as team %}
+
+<section class="py-5">
+  <div class="container">
+    <div class="row text-center mb-5">
+      <div class="col-12">
+        <h2 class="section-title">Meet Our Team</h2>
+        <p class="text-muted">
+          Three people, one team, and probably too many ideas.
+        </p>
+      </div>
+    </div>
+
+    <div class="row g-4 justify-content-center">
+      {% for profile in teams %} {{ team.team(profile) }} {% else %}
+      <p class="text-muted">There's have problem to show the developers.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>

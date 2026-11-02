@@ -1,0 +1,11 @@
+@use "../layout/animation" as anima;
+
+.marquee-wrap {
+	overflow: hidden;
+}
+.marquee-track {
+	display: flex;
+	width: max-content;
+	gap: 2.5rem;
+	animation: scroll-left 22s linear infinite;
+}

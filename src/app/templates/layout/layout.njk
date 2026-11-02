@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="id" id="html">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>{{ site.site_title }}</title>
+
+    <link rel="stylesheet" href="/src/static/scss/main.scss" />
+    <script type="module" src="/src/static/jslocal/script.js"></script>
+    <script type="module" src="/src/main.js"></script>
+  </head>
+  <body>
+    <header>{% include "components/_navbar.njk" %}</header>
+    <main id="maincontent">{% block content %} {% endblock %}</main>
+    <footer>{% include "layout/_footer.njk" %}</footer>
+  </body>
+</html>

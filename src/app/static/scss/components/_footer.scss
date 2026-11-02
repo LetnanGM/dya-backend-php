@@ -1,0 +1,305 @@
+@use "../abstract/variables" as v;
+
+.site-footer {
+  position: relative;
+
+  padding-top: 5rem;
+
+  background: v.$bg-dark;
+  color: v.$color-white;
+
+  // Keep the footer subtle.
+  // No new color system is introduced here.
+  &::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+      radial-gradient(
+        circle at 10% 20%,
+        rgba(13, 110, 253, 0.08),
+        transparent 35%
+      ),
+      radial-gradient(
+        circle at 90% 80%,
+        rgba(255, 255, 255, 0.025),
+        transparent 35%
+      );
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+
+// ─────────────────────────────────────────────
+// Brand
+// ─────────────────────────────────────────────
+
+.footer-brand {
+  max-width: 32rem;
+}
+
+.footer-title {
+  margin-bottom: 1rem;
+
+  color: v.$color-white;
+
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+.footer-description {
+  max-width: 30rem;
+  margin-bottom: 1.5rem;
+
+  color: v.$color-muted;
+
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+
+// ─────────────────────────────────────────────
+// Headings
+// ─────────────────────────────────────────────
+
+.footer-heading {
+  margin-bottom: 1.25rem;
+
+  color: v.$color-white;
+
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+
+// ─────────────────────────────────────────────
+// Links
+// ─────────────────────────────────────────────
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+
+  a {
+    display: inline-flex;
+    width: fit-content;
+
+    color: v.$color-muted;
+
+    font-size: 0.9rem;
+    text-decoration: none;
+
+    transition:
+      color 160ms ease,
+      transform 160ms ease;
+
+    &:hover {
+      color: v.$color-white;
+      transform: translateX(3px);
+    }
+
+    &:focus-visible {
+      outline: 2px solid v.$color-primary;
+      outline-offset: 4px;
+      border-radius: 2px;
+    }
+  }
+}
+
+
+// ─────────────────────────────────────────────
+// Social
+// ─────────────────────────────────────────────
+
+.social-links {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 2.25rem;
+    height: 2.25rem;
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.65rem;
+
+    color: v.$color-muted;
+
+    text-decoration: none;
+
+    transition:
+      color 160ms ease,
+      background-color 160ms ease,
+      border-color 160ms ease,
+      transform 160ms ease;
+
+    &:hover {
+      color: v.$color-white;
+
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 255, 255, 0.2);
+
+      transform: translateY(-2px);
+    }
+
+    &:focus-visible {
+      outline: 2px solid v.$color-primary;
+      outline-offset: 3px;
+    }
+  }
+}
+
+
+// ─────────────────────────────────────────────
+// Newsletter
+// ─────────────────────────────────────────────
+
+.newsletter-form {
+  margin-top: 1.25rem;
+}
+
+.newsletter-input {
+  min-height: 2.75rem;
+
+  padding-inline: 0.9rem;
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-right: 0;
+  border-radius: 0.65rem 0 0 0.65rem;
+
+  background: rgba(255, 255, 255, 0.03);
+  color: v.$color-white;
+
+  box-shadow: none;
+
+  &::placeholder {
+    color: v.$color-muted;
+    opacity: 0.8;
+  }
+
+  &:focus {
+    border-color: v.$color-primary;
+
+    background: rgba(255, 255, 255, 0.05);
+    color: v.$color-white;
+
+    box-shadow: none;
+  }
+}
+
+.btn-subscribe {
+  min-height: 2.75rem;
+
+  padding-inline: 1rem;
+
+  border: 1px solid v.$color-primary;
+  border-radius: 0 0.65rem 0.65rem 0;
+
+  background: v.$color-primary;
+  color: v.$color-white;
+
+  font-size: 0.875rem;
+  font-weight: 600;
+
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease;
+
+  &:hover {
+    background: color-mix(
+      in srgb,
+      v.$color-primary 85%,
+      v.$color-black
+    );
+
+    border-color: v.$color-primary;
+    color: v.$color-white;
+  }
+
+  &:focus-visible {
+    box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.25);
+  }
+}
+
+
+// ─────────────────────────────────────────────
+// Bottom
+// ─────────────────────────────────────────────
+
+.footer-bottom {
+  position: relative;
+
+  margin-top: 4rem;
+  padding: 1.25rem 0;
+
+  border-top: 1px solid v.$border-color;
+
+  color: v.$color-muted;
+
+  font-size: 0.8rem;
+}
+
+.footer-copyright,
+.footer-credit {
+  line-height: 1.6;
+}
+
+.footer-credit {
+  a {
+    color: v.$color-white;
+
+    font-weight: 600;
+    text-decoration: none;
+
+    transition: color 160ms ease;
+
+    &:hover {
+      color: v.$color-primary;
+    }
+  }
+}
+
+
+// ─────────────────────────────────────────────
+// Responsive
+// ─────────────────────────────────────────────
+
+@media (max-width: 767.98px) {
+  .site-footer {
+    padding-top: 3.5rem;
+  }
+
+  .footer-bottom {
+    margin-top: 3rem;
+  }
+
+  .newsletter-input {
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.65rem 0 0 0.65rem;
+  }
+
+  .btn-subscribe {
+    padding-inline: 0.85rem;
+  }
+}

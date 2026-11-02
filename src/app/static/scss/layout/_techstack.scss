@@ -1,0 +1,53 @@
+.lang-dot {
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	display: inline-block;
+	flex-shrink: 0;
+	background: #8b8b8b;
+}
+.lang-dot[data-lang="python"] {
+	background: #3572a5;
+}
+.lang-dot[data-lang="javascript"] {
+	background: #f1e05a;
+}
+.lang-dot[data-lang="typescript"] {
+	background: #3178c6;
+}
+.lang-dot[data-lang="node.js"] {
+	background: #3c873a;
+}
+.lang-dot[data-lang="go"] {
+	background: #00add8;
+}
+.lang-dot[data-lang="html"] {
+	background: #e34c26;
+}
+.lang-dot[data-lang="css"] {
+	background: #563d7c;
+}
+.lang-dot[data-lang="php"] {
+	background: #4f5d95;
+}
+.lang-dot[data-lang="java"] {
+	background: #b07219;
+}
+.lang-dot[data-lang="kotlin"] {
+	background: #a97bff;
+}
+.lang-dot[data-lang="swift"] {
+	background: #f05138;
+}
+.lang-dot[data-lang="postgresql"] {
+	background: #336791;
+}
+.lang-dot[data-lang="redis"] {
+	background: #d82c20;
+}
+.lang-dot[data-lang="docker"] {
+	background: #2496ed;
+}
+.lang-dot[data-lang="flask"] {
+	background: #000000;
+}
