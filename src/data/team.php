@@ -1,44 +1,30 @@
 <?php
 
 declare(strict_types=1);
+require_once __DIR__ . '/../database/koneksi.php';
 
 // `profil_img` relatif terhadap public/assets/ (dipanggil lewat asset()).
 // Set 'status' => false untuk menampilkan slot kosong "Future DyA Member".
-return [
-    [
-        'status'     => true,
-        'profil_img' => 'images/dev-2.webp',
-        'name'       => 'Muhammad Faiz Al-khalifi',
-        'peran'      => 'Junior WebDev & Beginner Dev',
-        'shortdesc'  => 'Fokus pada dampak sosial dan kolaborasi',
-        'link'       => [
-            'github'    => 'https://github.com/alkhalififaiz75-dot',
-            'linkedin'  => '#',
-            'instagram' => 'https://instagram.com/xion63957',
-        ],
-    ],
-    [
-        'status'     => true,
-        'profil_img' => 'images/dev-1.webp',
-        'name'       => 'Syafiq Aryasofa Pangestu',
-        'peran'      => 'CEO & Founder of DyA',
-        'shortdesc'  => 'junior high student from Indonesia 🇮🇩, building backend things one commit at a time.',
-        'link'       => [
-            'github'    => 'https://github.com/LetnanGM',
-            'linkedin'  => '#',
-            'instagram' => 'https://instagram.com/syafiqueue',
-        ],
-    ],
-    [
-        'status'     => true,
-        'profil_img' => 'images/cp-admin-ijj.webp',
-        'name'       => 'Rais Dirja Rahmadani',
-        'peran'      => 'Cyber Security & Founder of IJJ',
-        'shortdesc'  => "There's no System is Safe. CyberSec from Indonesia",
-        'link'       => [
-            'github'    => '#',
-            'linkedin'  => '#',
-            'instagram' => 'https://instagram.com/iss.notsefuh',
-        ],
-    ],
-];
+function getMembers(PDO $db): array
+{
+    $stmt = $db->query("SELECT profil_img, name, peran, description, linkgithub, linklinkedin, linkinstagram FROM teams LIMIT 3");
+    $members = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    // Map database fields to the expected array structure
+    return array_map(function ($member) {
+        return [
+            'status' => true,
+            'profil_img' => $member['profil_img'],
+            'name' => $member['name'],
+            'peran' => $member['peran'],
+            'shortdesc' => $member['description'],
+            'link' => [
+                'github' => $member['linkgithub'],
+                'linkedin' => $member['linklinkedin'],
+                'instagram' => $member['linkinstagram'],
+            ],
+        ];
+    }, $members);
+}
+
+return getMembers($db);

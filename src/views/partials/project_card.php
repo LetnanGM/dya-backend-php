@@ -15,7 +15,7 @@
         <?= e($project['name']) ?>
       </h5>
       <p class="card-text text-secondary small flex-grow-1 lh-sm mb-3">
-        <?= e($project['shortdesc']) ?>
+        <?= e($project['description']) ?>
       </p>
 
       <div class="mb-3">
