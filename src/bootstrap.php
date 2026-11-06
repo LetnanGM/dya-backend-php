@@ -22,5 +22,4 @@ shared([
     'site' => require __DIR__ . '/data/site.php',
     'teams' => require __DIR__ . '/data/team.php',
     'projects' => require __DIR__ . '/data/project.php',
-    'members' => require __DIR__ . '/data/member.php',
 ]);
