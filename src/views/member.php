@@ -1,0 +1,3 @@
+<?php
+
+partial('pages/members');

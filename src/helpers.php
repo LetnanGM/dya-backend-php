@@ -65,7 +65,7 @@ function partial(string $name, array $vars = []): void
     if (!is_file($file)) {
         throw new RuntimeException("View tidak ditemukan: {$name}");
     }
-    (static function (string $__file, array $__vars): void {
+    (static function (string $__file, array $__vars): void{
         extract($__vars, EXTR_SKIP);
         require $__file;
     })($file, array_merge(shared(), $vars));
@@ -106,3 +106,26 @@ function flash_pull(): ?array
     unset($_SESSION['flash']);
     return $flash;
 }
+
+function initial(string $name): string
+{
+    return strtoupper(substr($name, 0, 1));
+}
+
+function formatDate(string $date): string
+{
+    $timestamp = strtotime($date);
+
+    return $timestamp
+        ? date('F Y', $timestamp)
+        : 'Unknown';
+}
+
+function validUrl(string $url): bool
+{
+    $scheme = parse_url($url, PHP_URL_SCHEME);
+
+    return in_array($scheme, ['http', 'https'], true)
+        && filter_var($url, FILTER_VALIDATE_URL) !== false;
+}
+

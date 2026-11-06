@@ -1,5 +1,9 @@
 Options -Indexes
 DirectoryIndex index.php
+RewriteEngine On
+
+RewriteRule ^member/?$ member/members.php [L,QSA]
+RewriteRule ^member/([a-zA-Z0-9_-]+)/?$ member/members.php?username=$1 [L,QSA]
 
 <IfModule mod_headers.c>
   Header always set X-Content-Type-Options "nosniff"

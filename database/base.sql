@@ -46,6 +46,57 @@ CREATE TABLE IF NOT EXISTS users (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB;
 
+/* CREATE MEMBERRRRR TABLEEEEEE */
+CREATE TABLE members (
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    bio VARCHAR(255),
+    about TEXT,
+    avatar VARCHAR(500),
+    cover VARCHAR(500),
+    location VARCHAR(100),
+    joined_at DATE NOT NULL DEFAULT (CURRENT_DATE),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE member_interests (
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    member_id BIGINT UNSIGNED NOT NULL,
+    interest VARCHAR(100) NOT NULL,
+
+    FOREIGN KEY (member_id)
+        REFERENCES members(id)
+        ON DELETE CASCADE,
+
+    UNIQUE (member_id, interest)
+);
+
+CREATE TABLE member_gallery (
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    member_id BIGINT UNSIGNED NOT NULL,
+    image VARCHAR(500) NOT NULL,
+    thumbnail VARCHAR(500),
+    caption VARCHAR(255),
+    uploaded_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    visibility ENUM('public', 'private') DEFAULT 'public',
+
+    FOREIGN KEY (member_id)
+        REFERENCES members(id)
+        ON DELETE CASCADE
+);
+
+CREATE TABLE member_links (
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    member_id BIGINT UNSIGNED NOT NULL,
+    platform VARCHAR(50) NOT NULL,
+    url VARCHAR(500) NOT NULL,
+
+    FOREIGN KEY (member_id)
+        REFERENCES members(id)
+        ON DELETE CASCADE
+);
+
 /* insert default data */
 INSERT IGNORE INTO projects (thumb_image, name, description, techstack, linkview, author) VALUES
 ('https://placehold.co/600x360?text=E-Commerce+API', 'E-Commerce API REST', 'A robust, scalable backend built with Node.js, Express, and PostgreSQL featuring JWT authentication and Stripe integration.', '["Node.js", "PostgreSQL"]', '#HEREISLINK', 'DyA Teams'),
