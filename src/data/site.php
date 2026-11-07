@@ -7,10 +7,14 @@
  * from me github.com/LetnanGM
  */
 declare(strict_types=1);
+require_once __DIR__ . '/server.php';
+
+$_data_server = getSelfInfo();
 
 return [
     'site_title' => 'DyA - Grow Student',
     'name' => 'DyA - Teams',
+    'url' => $_data_server['uri'],
     'social' => ['Github' => 'LetnanGM', 'Instagram' => '@syafiqueue'],
     'email' => 'letnan0gamedev@gmail.com',
     'companyName' => 'DyA',
