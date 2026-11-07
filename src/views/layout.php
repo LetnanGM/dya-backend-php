@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 require_once __DIR__ . "/../core/HandlerSeo.php";
 $seo = new SEOBuilder();
@@ -60,6 +61,8 @@ $seo->add_jsonld_template("organization", [
 
 ?>
 
+=======
+>>>>>>> 78e352c80dffb0ce1691bb8b563b2adeeedc835f
 <!DOCTYPE html>
 <html lang="id">
 
@@ -67,7 +70,15 @@ $seo->add_jsonld_template("organization", [
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<<<<<<< HEAD
   <?= $seo->render() ?>
+=======
+  <?php partial('partials/seo'); ?>
+
+  <!-- Favicon -->
+  <link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon">
+
+>>>>>>> 78e352c80dffb0ce1691bb8b563b2adeeedc835f
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

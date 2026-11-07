@@ -19,11 +19,31 @@ function e(mixed $value): string
 
 /* ---------- URL & asset ---------- */
 
-/** Folder tempat public/index.php berada, relatif terhadap domain ('' bila di root). */
+/**
+ * Folder tempat public/ berada, relatif terhadap domain ('' bila di root).
+ * Dihitung dari lokasi public/, jadi hasilnya sama untuk /index.php maupun /member/members.php.
+ */
 function base_path(): string
 {
-    $dir = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME'] ?? '/'));
-    return $dir === '/' || $dir === '.' ? '' : rtrim($dir, '/');
+    static $base = null;
+    if ($base !== null) {
+        return $base;
+    }
+
+    $script = str_replace('\\', '/', $_SERVER['SCRIPT_NAME'] ?? '/');
+    $file = str_replace('\\', '/', $_SERVER['SCRIPT_FILENAME'] ?? '');
+    $public = rtrim(str_replace('\\', '/', (string) config('public_dir')), '/');
+
+    // /var/www/dya/public/member/members.php -> "/member/members.php"
+    if ($file !== '' && str_starts_with($file, $public . '/')) {
+        $relative = substr($file, strlen($public));
+        if (str_ends_with($script, $relative)) {
+            return $base = rtrim(substr($script, 0, -strlen($relative)), '/');
+        }
+    }
+
+    $dir = dirname($script);
+    return $base = ($dir === '/' || $dir === '.' ? '' : rtrim($dir, '/'));
 }
 
 function url(string $path = ''): string

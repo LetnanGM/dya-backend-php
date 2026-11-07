@@ -4,5 +4,6 @@ storage/*
 .env
 .DS_Store
 node_modules/
+/vendor
 
 .patches

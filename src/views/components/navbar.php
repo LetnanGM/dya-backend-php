@@ -1,47 +1,29 @@
-<nav
-  class="navbar navbar-expand-lg navbar-light mt-md-2 w-auto navbar-glass fixed-top"
->
+<nav class="navbar navbar-expand-lg navbar-light mt-md-2 w-auto navbar-glass fixed-top">
   <div class="container-fluid">
     <a class="navbar-brand" href="#"><?= e($site['name']) ?></a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="offcanvas"
-      data-bs-target="#navbar"
-      aria-controls="navbar"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbar"
+      aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div
-      class="offcanvas offcanvas-start"
-      tabindex="-1"
-      id="navbar"
-      aria-labelledby="navbarLabel"
-    >
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="navbar" aria-labelledby="navbarLabel">
       <div class="offcanvas-header">
         <h5 class="offcanvas-title" id="navbarLabel"></h5>
-        <button
-          type="button"
-          class="btn-close text-reset"
-          data-bs-dismiss="offcanvas"
-          aria-label="Toggle navigation"
-        ></button>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+          aria-label="Toggle navigation"></button>
       </div>
       <div class="offcanvas-body">
         <ul class="navbar-nav ms-auto font-monospace align-items-lg-center">
           <li class="nav-item mx-lg-2 my-2 my-lg-0">
-            <a class="nav-link" href="#home">Home</a>
-          </li>
-          <li class="nav-item mx-lg-2 my-2 my-lg-0">
-            <a class="nav-link" href="#about">About</a>
+            <a class="nav-link" href="/#about">About</a>
           </li>
           <li class="nav-item mx-lg-2 my-2 my-lg-0">
             <a class="nav-link" href="#projects">Project</a>
           </li>
           <li class="nav-item mx-lg-2 my-2 my-lg-0">
-            <a class="nav-link" href="#contact">Contact</a>
+            <a class="nav-link" href="/member">Members</a>
+          </li>
+          <li class="nav-item mx-lg-2 my-2 my-lg-0">
+            <a class="nav-link" href="/#contact">Contact</a>
           </li>
         </ul>
       </div>

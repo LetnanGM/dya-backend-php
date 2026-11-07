@@ -111,7 +111,7 @@ INSERT IGNORE INTO projects (thumb_image, name, description, techstack, linkview
 INSERT IGNORE INTO teams (name, profil_img, status, peran, description, linkgithub, linklinkedin, linkinstagram) VALUES
 ('Muhammad Faiz Al-khalifi', 'images/dev-2.webp', TRUE, 'Junior WebDev & Beginner Dev', 'Fokus pada dampak sosial dan kolaborasi', '#', '#', '#'),
 ('Syafiq Aryasofa Pangestu', 'images/dev-1.webp', TRUE, 'Founder of DyA & Backend Dev', 'junior high student from Indonesia 🇮🇩, building backend things one commit at a time.', '#', '#', '#'),
-('Rais Dirja Rahmadai', 'images/cp-admin-ijj.webp', TRUE, 'Cyber Security & Founder of IJJ', 'Theres no System is Safe. CyberSec from Indonesia.', '#', '#', '#');
+('Rais Dirja Rahmadi', 'images/cp-admin-ijj.webp', TRUE, 'Cyber Security & Founder of IJJ', 'Theres no System is Safe. CyberSec from Indonesia.', '#', '#', '#');
 
 INSERT IGNORE INTO shortlinks (shortlink, longlink) VALUES
 ('dya', 'https://www.dya.web.id'),

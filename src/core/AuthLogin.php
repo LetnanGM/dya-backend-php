@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * ini adalah tempat Authentikasi terjadi antara login, daftar, dan logout.
+ * wajib gunakan prepared untuk menghindari celah sql injection.
+ * 
+ * apabila database terbobol, segera tambal celah.
+ */
+
 declare(strict_types=1);
 
 class AuthLogin
@@ -44,21 +51,16 @@ class AuthLogin
 
     public function login(string $username, string $password)
     {
-        // Prepare the SQL statement to prevent SQL injection
         $stmt = $this->db->prepare("SELECT * FROM users WHERE username = :username");
         $stmt->bindParam(':username', $username);
         $stmt->execute();
-
-        // Fetch the user data
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        // Verify the password
         if ($user && password_verify($password, $user['password'])) {
             if (session_status() === PHP_SESSION_NONE) {
                 session_start();
             }
 
-            // Start a session and store user information
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['username'] = $user['username'];
             return true;
