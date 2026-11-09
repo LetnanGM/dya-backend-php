@@ -42,6 +42,7 @@ CREATE TABLE IF NOT EXISTS users (
     username VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
+    role ENUM('user', 'admin', 'owner') NOT NULL DEFAULT 'user',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB;
@@ -58,7 +59,7 @@ CREATE TABLE IF NOT EXISTS members (
     location VARCHAR(100),
     joined_at DATE NOT NULL DEFAULT (CURRENT_DATE),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS member_interests (
     id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -70,7 +71,7 @@ CREATE TABLE IF NOT EXISTS member_interests (
         ON DELETE CASCADE,
 
     UNIQUE (member_id, interest)
-);
+) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS member_gallery (
     id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -84,7 +85,7 @@ CREATE TABLE IF NOT EXISTS member_gallery (
     FOREIGN KEY (member_id)
         REFERENCES members(id)
         ON DELETE CASCADE
-);
+) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS member_links (
     id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -97,7 +98,17 @@ CREATE TABLE IF NOT EXISTS member_links (
         ON DELETE CASCADE,
 
     UNIQUE (member_id, platform)
-);
+) ENGINE=InnoDB;
+
+/* THIS IS MIMIC INBOX EMAIL :V */
+CREATE TABLE IF NOT EXISTS inbox_messages (
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    subject VARCHAR(255) NOT NULL,
+    message TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
 
 /* insert default data */
 INSERT IGNORE INTO projects (thumb_image, name, description, techstack, linkview, author) VALUES
@@ -111,7 +122,7 @@ INSERT IGNORE INTO projects (thumb_image, name, description, techstack, linkview
 INSERT IGNORE INTO teams (name, profil_img, status, peran, description, linkgithub, linklinkedin, linkinstagram) VALUES
 ('Muhammad Faiz Al-khalifi', 'images/dev-2.webp', TRUE, 'Junior WebDev & Beginner Dev', 'Fokus pada dampak sosial dan kolaborasi', '#', '#', '#'),
 ('Syafiq Aryasofa Pangestu', 'images/dev-1.webp', TRUE, 'Founder of DyA & Backend Dev', 'junior high student from Indonesia 🇮🇩, building backend things one commit at a time.', '#', '#', '#'),
-('Rais Dirja Rahmadai', 'images/cp-admin-ijj.webp', TRUE, 'Cyber Security & Founder of IJJ', 'Theres no System is Safe. CyberSec from Indonesia.', '#', '#', '#');
+('Rais Dirja Rahmadi', 'images/cp-admin-ijj.webp', TRUE, 'Cyber Security & Founder of IJJ', 'Theres no System is Safe. CyberSec from Indonesia.', '#', '#', '#');
 
 INSERT IGNORE INTO shortlinks (shortlink, longlink) VALUES
 ('dya', 'https://www.dya.web.id'),

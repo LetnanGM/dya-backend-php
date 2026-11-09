@@ -53,6 +53,8 @@ $icons = [
             href="<?= e($href) ?>"
             aria-label="<?= e($name) ?> on <?= e(ucfirst((string) $network)) ?>"
             class="btn btn-sm btn-outline-dark rounded-circle"
+            rel="me noopener"
+            target="_blank"
             <?php if (preg_match('#^https?://#i', (string) $href)) : ?>target="_blank" rel="noopener nofollow"<?php endif; ?>
           >
             <i class="<?= e($icons[strtolower((string) $network)] ?? 'fas fa-link') ?>"></i>
