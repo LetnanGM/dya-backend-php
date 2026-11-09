@@ -1,0 +1,10 @@
+<?php
+
+function go_forbidden()
+{
+    http_response_code(403);
+    echo "403 Forbidden";
+    exit;
+}
+
+?>

@@ -18,7 +18,7 @@ require_once __DIR__ . '/../../database/koneksi.php';
  * @var SeoHandler $seo dibagikan oleh bootstrap.php
  */
 
-$memberRepo = new CoreMember(db());
+$memberRepo = new CoreMember(dbConnect());
 
 /* ---------- Request ---------- */
 

@@ -8,7 +8,7 @@ declare(strict_types=1);
  * Semua nilai bisa di-override lewat environment variable, contoh:
  *   DB_HOST=127.0.0.1 DB_USER=dya DB_PASS=rahasia php -S localhost:8000 -t public
  */
-function db(): PDO
+function dbConnect(): PDO
 {
     static $pdo = null;
 
@@ -37,4 +37,4 @@ function db(): PDO
 }
 
 // Kompatibilitas: file lama (login, register, redirect, data/*) masih memakai $db.
-$db = db();
+$db = dbConnect();
