@@ -93,9 +93,13 @@ $seo->add_jsonld_template("organization", [
 
   <!-- CSS situs (hasil kompilasi scss/main.scss) -->
   <link rel="stylesheet" href="<?= e(asset('css/main.css')) ?>" />
+
+  <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.11/dist/htmx.min.js"
+    integrity="sha384-2OatzQy1H+Zd/IIrjr1TcuDGqLXeHhbooAyJY1KdQMKnr4LZ22k31GBLdYKHmVjg"
+    crossorigin="anonymous"></script>
 </head>
 
-<body>
+<body hx-boost="true" hx-target="#maincontent" hx-swap="innerHTML swap:150ms">
   <header><?php partial('components/navbar'); ?></header>
   <main id="maincontent">
     <?= $content ?>
