@@ -10,6 +10,7 @@
 declare(strict_types=1);
 
 require dirname(__DIR__) . '/src/bootstrap.php';
+require __DIR__ . '/../src/core/HandlerMail.php';
 
 $wantsJson = str_contains($_SERVER['HTTP_ACCEPT'] ?? '', 'application/json');
 
@@ -55,12 +56,12 @@ if (isset($_SESSION['last_sent']) && time() - (int) $_SESSION['last_sent'] < $th
     respond(false, 'Terlalu cepat. Tunggu beberapa detik sebelum mengirim lagi.', 429);
 }
 
-$name    = single_line((string) ($_POST['name'] ?? ''));
-$email   = single_line((string) ($_POST['email'] ?? ''));
+$name = single_line((string) ($_POST['name'] ?? ''));
+$email = single_line((string) ($_POST['email'] ?? ''));
 $subject = single_line((string) ($_POST['subject'] ?? ''));
 $message = trim((string) ($_POST['message'] ?? ''));
 
-$len = static fn (string $v): int => function_exists('mb_strlen') ? mb_strlen($v) : strlen($v);
+$len = static fn(string $v): int => function_exists('mb_strlen') ? mb_strlen($v) : strlen($v);
 
 if ($name === '' || $subject === '' || $message === '') {
     respond(false, 'Semua kolom wajib diisi.', 422);
@@ -72,26 +73,11 @@ if ($len($name) > 100 || $len($subject) > 150 || $len($message) > 5000) {
     respond(false, 'Salah satu kolom terlalu panjang.', 422);
 }
 
-$to   = (string) config('mail_to');
+$to = (string) config('mail_to');
 $from = (string) config('mail_from');
-$body = "Nama   : {$name}\nEmail  : {$email}\nSubjek : {$subject}\n\n{$message}\n";
 
-$sent = false;
-
-if (config('mail_driver') === 'log') {
-    $dir = (string) config('storage_dir');
-    $entry = sprintf("[%s]\nTo: %s\n%s\n%s\n", date('c'), $to, $body, str_repeat('-', 60));
-    $sent = is_dir($dir) && file_put_contents($dir . '/messages.log', $entry, FILE_APPEND | LOCK_EX) !== false;
-} else {
-    $headers = [
-        'From'         => $from,
-        'Reply-To'     => $email,
-        'MIME-Version' => '1.0',
-        'Content-Type' => 'text/plain; charset=UTF-8',
-    ];
-    $encodedSubject = '=?UTF-8?B?' . base64_encode('[DyA Contact] ' . $subject) . '?=';
-    $sent = @mail($to, $encodedSubject, $body, $headers);
-}
+$handler = new HandlerMail();
+$sent = $handler->handleIncomingMail($name, $email, $subject, $message);
 
 if (!$sent) {
     error_log('contact.php: gagal mengirim pesan (driver: ' . config('mail_driver') . ')');
