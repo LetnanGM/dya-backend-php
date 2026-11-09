@@ -1,7 +1,8 @@
 <?php
+require_once __DIR__ . '/../../src/bootstrap.php';
+require_once __DIR__ . '/../../src/helpers.php';
 require_once __DIR__ . '/../../src/core/AuthLogin.php';
-require_once __DIR__ . '/../../src/database/koneksi.php';
-$auth = new AuthLogin($db);
+$auth = new AuthLogin();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'];
@@ -11,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header('Location: /app/dashboard.php');
         exit;
     } else {
-        $error = 'Invalid username or password';
+        $error = flash_pull()["message"];
     }
 }
 ?>
@@ -21,5 +22,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <input type="password" name="password" placeholder="Password" required>
     <button type="submit">Login</button>
 
-    <div><?php if (isset($error)) echo $error; ?></div>
+    <div><?php if (isset($error))
+        echo $error; ?></div>
 </form>

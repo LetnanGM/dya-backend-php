@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+require_once __DIR__ . "/../helpers.php";
 require_once __DIR__ . "/../database/koneksi.php";
 require_once __DIR__ . "/RouteError.php";
 
@@ -60,8 +61,8 @@ class UserManagement
         $user->execute();
 
         if ($user->rowCount() === 0) {
-            echo "Username or Email already registered. <a href='/app/login.php'>Login</a>?";
-            exit;
+            flash_set("insert", "Username or Email already exists.");
+            return false;
         }
 
         $user_data = [

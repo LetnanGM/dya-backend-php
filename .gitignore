@@ -6,4 +6,5 @@ storage/*
 node_modules/
 /vendor
 
+/database/safe.sql
 .patches

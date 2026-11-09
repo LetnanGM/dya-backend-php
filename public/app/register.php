@@ -1,9 +1,10 @@
 <?php
 
+require_once __DIR__ . '/../../src/bootstrap.php';
+require_once __DIR__ . '/../../src/helpers.php';
 require_once __DIR__ . '/../../src/core/AuthLogin.php';
-require_once __DIR__ . '/../../src/database/koneksi.php';
 
-$auth = new AuthLogin($db);
+$auth = new AuthLogin();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
@@ -16,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header('Location: /app/dashboard.php');
         exit;
     } else {
-        $error = $response;
+        $error = flash_pull()["message"];
     }
 }
 
