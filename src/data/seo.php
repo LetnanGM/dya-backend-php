@@ -1,27 +1,27 @@
 <?php
-require_once __DIR__ . "/../core/HandlerSeo.php";
-function register_all_template(SEOBuilder $seo)
-{
-    $seo->register_jsonld_template("organization", [
-        "@context" => "https://schema.org",
-        "@type" => "Organization",
-        "name" => "{{name}}",
-        "url" => "{{url}}",
-        "logo" => "{{logo}}",
-        "sameAs" => "{{sameAs}}",
-        "contactPoint" => [
-            "@type" => "ContactPoint",
-            "telephone" => "{{telephone}}",
-            "contactType" => "customer service"
-        ]
-    ]);
-}
 
-function getSeo(): SEOBuilder
-{
-    $seo_in = new SEOBuilder();
-    register_all_template($seo_in);
-    return $seo_in;
+declare(strict_types=1);
+
+/**
+ * Konfigurasi SEO (data saja). Logikanya ada di src/core/HandlerSEO.php (class SeoHandler).
+ *
+ *  - defaults     : dipakai semua halaman.
+ *  - pages        : override per halaman. Kuncinya nama file script tanpa .php
+ *                   (index => public/index.php, members => public/member/members.php).
+ *  - organization : sumber JSON-LD Organization yang dipasang di semua halaman.
+ *
+ * `image` boleh URL penuh atau path relatif terhadap public/assets/. Path relatif
+ * hanya dipasang kalau filenya ada, jadi tidak ada og:image yang 404.
+ */
+$site = require __DIR__ . '/site.php';
+
+// Handle di data/site.php ('social') -> URL profil untuk JSON-LD sameAs.
+$profileBase = ['Github' => 'https://github.com/', 'Instagram' => 'https://instagram.com/'];
+$sameAs = [];
+foreach ($site['social'] as $platform => $handle) {
+    if (isset($profileBase[$platform])) {
+        $sameAs[] = $profileBase[$platform] . ltrim($handle, '@');
+    }
 }
 
 return [
