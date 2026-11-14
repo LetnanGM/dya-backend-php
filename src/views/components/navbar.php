@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light mt-md-2 w-auto navbar-glass fixed-top">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#"><?= e($site['name']) ?></a>
+    <a class="navbar-brand" href="<?= e(url('/')) ?>"><?= e($site['name']) ?></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbar"
       aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -14,16 +14,16 @@
       <div class="offcanvas-body">
         <ul class="navbar-nav ms-auto font-monospace align-items-lg-center">
           <li class="nav-item mx-lg-2 my-2 my-lg-0">
-            <a class="nav-link" href="/#about">About</a>
+            <a class="nav-link" href="<?= e(url('/#about')) ?>">About</a>
           </li>
           <li class="nav-item mx-lg-2 my-2 my-lg-0">
-            <a class="nav-link" href="#projects">Project</a>
+            <a class="nav-link" href="<?= e(url('/#projects')) ?>">Project</a>
           </li>
           <li class="nav-item mx-lg-2 my-2 my-lg-0">
-            <a class="nav-link" href="/member">Members</a>
+            <a class="nav-link" href="<?= e(url('member')) ?>">Members</a>
           </li>
           <li class="nav-item mx-lg-2 my-2 my-lg-0">
-            <a class="nav-link" href="/#contact">Contact</a>
+            <a class="nav-link" href="<?= e(url('/#contact')) ?>">Contact</a>
           </li>
         </ul>
       </div>

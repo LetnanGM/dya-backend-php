@@ -91,14 +91,38 @@ function partial(string $name, array $vars = []): void
     })($file, array_merge(shared(), $vars));
 }
 
-/** Render view di dalam layout utama. */
+/** True bila request datang dari htmx (header HX-Request). */
+function is_htmx(): bool
+{
+    return ($_SERVER['HTTP_HX_REQUEST'] ?? '') === 'true';
+}
+
+/**
+ * True bila yang diminta cukup isi halamannya saja (tanpa navbar, footer, <head>).
+ * Pengecualian: tombol Back/Forward (HX-History-Restore-Request). Untuk itu htmx
+ * mengganti seluruh <body>, jadi harus dibalas halaman penuh.
+ */
+function wants_fragment(): bool
+{
+    return is_htmx() && ($_SERVER['HTTP_HX_HISTORY_RESTORE_REQUEST'] ?? '') !== 'true';
+}
+
+/**
+ * Render view. Request biasa -> di dalam layout utama (halaman penuh, penting untuk SEO).
+ * Request htmx -> hanya isinya (partials/fragment.php).
+ */
 function view(string $name, array $data = []): void
 {
     ob_start();
     partial($name, $data);
     $content = (string) ob_get_clean();
 
-    partial('layout', ['content' => $content]);
+    // URL yang sama bisa menghasilkan dua jenis respons; cache jangan sampai tertukar.
+    if (!headers_sent()) {
+        header('Vary: HX-Request', false);
+    }
+
+    partial(wants_fragment() ? 'partials/fragment' : 'layout', ['content' => $content]);
 }
 
 /* ---------- Session helpers: CSRF & flash ---------- */

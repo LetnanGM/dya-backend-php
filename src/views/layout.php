@@ -25,12 +25,19 @@
   <!-- CSS situs (hasil kompilasi scss/main.scss) -->
   <link rel="stylesheet" href="<?= e(asset('css/main.css')) ?>" />
 
-  <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.11/dist/htmx.min.js"
+  <!-- htmx: link & form internal berjalan tanpa reload. `defer` supaya tidak menahan render. -->
+  <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.11/dist/htmx.min.js" defer
     integrity="sha384-2OatzQy1H+Zd/IIrjr1TcuDGqLXeHhbooAyJY1KdQMKnr4LZ22k31GBLdYKHmVjg"
     crossorigin="anonymous"></script>
 </head>
 
-<body hx-boost="true" hx-target="#maincontent" hx-swap="innerHTML swap:150ms">
+<!--
+  hx-boost  : semua <a> & <form> internal dikirim lewat AJAX (tanpa JS tambahan, href tetap ada untuk SEO & fallback).
+  hx-target : hasilnya hanya mengganti isi #maincontent; navbar & footer tidak ikut dimuat ulang.
+  transition: efek transisi halus (View Transitions API) di browser yang mendukung.
+  Server membalas isi halaman saja untuk request htmx (lihat view() di src/helpers.php).
+-->
+<body hx-boost="true" hx-target="#maincontent" hx-swap="innerHTML transition:true">
   <header><?php partial('components/navbar'); ?></header>
   <main id="maincontent">
     <?= $content ?>
@@ -41,6 +48,7 @@
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
   <script src="<?= e(asset('js/script.js')) ?>" defer></script>
+  <script src="<?= e(asset('js/lightbox.js')) ?>" defer></script>
 </body>
 
 </html>

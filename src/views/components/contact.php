@@ -67,8 +67,11 @@
         <div class="col-lg-7 bg-white p-5">
           <h4 class="fw-bold text-dark mb-4">Send a Message</h4>
 
-          <form id="contact-form" action="<?= e(url('contact.php')) ?>" method="POST" data-ajax
-            hx-target="#popup-place">
+          <!-- action+method = fallback tanpa JavaScript. hx-post = kirim lewat htmx, balasan (alert) masuk ke #popup-place. -->
+          <form id="contact-form" action="<?= e(url('contact.php')) ?>" method="POST"
+            hx-post="<?= e(url('contact.php')) ?>" hx-target="#popup-place" hx-swap="innerHTML"
+            hx-disabled-elt="find button[type='submit']"
+            hx-on::after-request="if (event.detail.successful) this.reset()">
             <input type="hidden" name="csrf" value="<?= e(csrf_token()) ?>" />
             <!-- Honeypot anti-spam: harus tetap kosong, disembunyikan dari manusia -->
             <div style="position: absolute; left: -9999px" aria-hidden="true">

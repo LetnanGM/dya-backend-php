@@ -1,7 +1,8 @@
 <?php
 
 /**
- * Gallery foto di profil member + lightbox. Script lightbox hanya dimuat jika ada foto.
+ * Gallery foto di profil member + markup lightbox. Script-nya (assets/js/lightbox.js) dimuat
+ * sekali oleh layout dan bekerja lewat event delegation, jadi aman untuk konten hasil htmx.
  *
  * @var array $photos foto public milik member (CoreMember::get_profile()['gallery'])
  */
@@ -91,7 +92,5 @@
         </div>
 
     </div>
-
-    <script src="<?= e(asset('js/lightbox.js')) ?>" defer></script>
 
 <?php endif; ?>

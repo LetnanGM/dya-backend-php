@@ -8,7 +8,6 @@
  */
 
 declare(strict_types=1);
-require_once __DIR__ . '/../../src/helpers.php';
 require_once __DIR__ . "/HandlerUser.php";
 
 class AuthLogin
@@ -28,15 +27,11 @@ class AuthLogin
                 session_start();
             }
 
-            session_regenerate_id(true);
-
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['username'] = $user['username'];
-            flash_set("login", "Login Successfully");
             return true;
         }
 
-        flash_set("login", "maybe username or password wrong!");
         return false;
     }
 

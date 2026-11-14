@@ -152,7 +152,7 @@ $links = [
           <?php if ($href === null) {
             continue;
           } ?>
-          <a href="<?= e($href) ?>" class="link-underline-grow text-secondary" <?= $external ? 'target="_blank" rel="noopener nofollow"' : '' ?>><?= e($label) ?></a>
+          <a href="<?= e($href) ?>" class="link-underline-grow text-secondary" <?= $external ? 'target="_blank" rel="me noopener nofollow"' : '' ?>><?= e($label) ?></a>
         <?php endforeach; ?>
       </div>
       <div class="d-none d-sm-block font-mono text-uppercase small text-secondary">

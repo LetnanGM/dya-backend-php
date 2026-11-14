@@ -3,8 +3,9 @@
 /**
  * Handler form kontak (pengganti endpoint /v1/email/send).
  *
- * - Dipanggil via fetch() oleh script.js  -> membalas JSON
- * - Atau via submit form biasa (tanpa JS) -> redirect ke /#contact + pesan flash
+ * - Dipanggil htmx (hx-post di form)       -> membalas potongan HTML (alert Bootstrap)
+ * - Dipanggil fetch() dengan Accept: JSON   -> membalas JSON
+ * - Atau via submit form biasa (tanpa JS)   -> redirect ke /#contact + pesan flash
  */
 
 declare(strict_types=1);
@@ -14,12 +15,17 @@ require __DIR__ . '/../src/core/HandlerMail.php';
 
 $wantsJson = str_contains($_SERVER['HTTP_ACCEPT'] ?? '', 'application/json');
 
-/** Akhiri request: JSON untuk fetch, redirect + flash untuk submit biasa. */
+/** Akhiri request: HTML untuk htmx, JSON untuk fetch, redirect + flash untuk submit biasa. */
 function respond(bool $ok, string $message, int $status = 200): never
 {
     global $wantsJson;
 
-    if ($wantsJson) {
+    if (is_htmx()) {
+        http_response_code($status);
+        header('Content-Type: text/html; charset=utf-8');
+        $text = $ok ? 'Success! ' . $message . ' (This message will close in 3 seconds.)' : $message;
+        printf('<div class="alert alert-%s mb-0" role="alert">%s</div>', $ok ? 'success' : 'danger', e($text));
+    } elseif ($wantsJson) {
         http_response_code($status);
         header('Content-Type: application/json; charset=utf-8');
         echo json_encode(['ok' => $ok, 'message' => $message], JSON_UNESCAPED_UNICODE);
