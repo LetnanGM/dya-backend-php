@@ -2,10 +2,11 @@
 
 declare(strict_types=1);
 
-require_once __DIR__ . "/../src/database/koneksi.php";
-require_once __DIR__ . "/../src/core/Redirection.php";
+use App\Core\SafeRedirect;
 
-$st = new SafeRedirect($db);
+require dirname(__DIR__) . '/src/bootstrap.php';
+
+$st = new SafeRedirect(dbConnect());
 
 $st->redirect($_GET['l'] ?? null);
 ?>

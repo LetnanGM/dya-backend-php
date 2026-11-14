@@ -1,5 +1,7 @@
 <?php
 use App\Controller\Auth\AuthLogin;
+
+require dirname(__DIR__, 2) . '/src/bootstrap.php';
 $auth = new AuthLogin();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

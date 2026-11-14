@@ -35,6 +35,3 @@ function dbConnect(): PDO
 
     return $pdo;
 }
-
-// Kompatibilitas: file lama (login, register, redirect, data/*) masih memakai $db.
-$db = dbConnect();

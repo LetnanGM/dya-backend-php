@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Repository;
 declare(strict_types=1);
 
-require_once __DIR__ . '/../database/koneksi.php';
+namespace App\Repository;
 
 use PDO;
 use PDOException;

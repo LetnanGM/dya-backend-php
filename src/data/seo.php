@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /**
- * Konfigurasi SEO (data saja). Logikanya ada di src/core/HandlerSEO.php (class SeoHandler).
+ * Konfigurasi SEO (data saja). Logikanya ada di src/Repository/SeoHandler.php (class SeoHandler).
  *
  *  - defaults     : dipakai semua halaman.
  *  - pages        : override per halaman. Kuncinya nama file script tanpa .php

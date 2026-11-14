@@ -7,14 +7,21 @@
  * apabila database terbobol, segera tambal celah.
  */
 
-namespace App\Controller\Auth;
 declare(strict_types=1);
+
+namespace App\Controller\Auth;
 
 use App\Repository\User\UserManagement;
 
 class AuthLogin
 {
-    private UserManagement $userhandler = new UserManagement();
+    private UserManagement $userhandler;
+
+    public function __construct(?UserManagement $userhandler = null)
+    {
+        $this->userhandler = $userhandler ?? new UserManagement();
+    }
+
     public function register(string $email, string $username, string $password): bool
     {
         return $this->userhandler->insert($email, $username, $password);
@@ -47,5 +54,3 @@ class AuthLogin
         session_destroy();
     }
 }
-
-?>

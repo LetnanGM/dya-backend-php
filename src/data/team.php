@@ -27,4 +27,4 @@ function getMembers(PDO $db): array
     }, $members);
 }
 
-return getMembers($db);
+return getMembers(dbConnect());

@@ -3,7 +3,7 @@
 declare(strict_types=1);
 use App\Controller\Auth\AuthLogin;
 
-session_start();
+require dirname(__DIR__, 2) . '/src/bootstrap.php';
 
 if (!isset($_SESSION['user_id'])) {
     header("Location: /app/login.php");

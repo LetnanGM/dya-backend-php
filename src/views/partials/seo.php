@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Meta tag SEO untuk <head>. Nilainya berasal dari $seo (SeoHandler, src/core/HandlerSEO.php).
+ * Meta tag SEO untuk <head>. Nilainya berasal dari $seo (SeoHandler, src/Repository/SeoHandler.php).
  *
  * @var SeoHandler $seo
  */

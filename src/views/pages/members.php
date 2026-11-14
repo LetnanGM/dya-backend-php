@@ -3,8 +3,7 @@
 declare(strict_types=1);
 
 use App\Repository\Member\CoreMember;
-use App\Repository\SEO\SeoHandler;
-require_once __DIR__ . '/../../database/koneksi.php';
+use App\Repository\SeoHandler;
 
 /**
  * Halaman member. File ini hanya mengurus: request -> data -> SEO -> pilih komponen.

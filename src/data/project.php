@@ -1,7 +1,6 @@
 <?php
 
 declare(strict_types=1);
-require_once __DIR__ . '/../database/koneksi.php';
 
 // NOTE: `thumb_image` awalnya "https://placeholder.com" (itu alamat website,
 // bukan gambar, jadi gambarnya broken). Diganti URL placeholder gambar sungguhan.
@@ -20,4 +19,4 @@ function getProjects(PDO $db): array
     return $projects;
 }
 
-return getProjects($db);
+return getProjects(dbConnect());
