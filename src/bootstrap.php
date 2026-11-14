@@ -3,7 +3,6 @@
 declare(strict_types=1);
 require_once __DIR__ . '/../vendor/autoload.php';
 
-
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
 $dotenv->load();
 
@@ -23,8 +22,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-require __DIR__ . '/core/HandlerSEO.php';
-
+use App\Repository\SeoHandler;
 // Preset SEO dipilih dari nama script (index.php -> 'index', member/members.php -> 'members').
 $seo = (new SeoHandler(
     require __DIR__ . '/data/seo.php',

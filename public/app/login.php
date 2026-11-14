@@ -1,6 +1,5 @@
 <?php
-require_once __DIR__ . '/../../src/core/AuthLogin.php';
-require_once __DIR__ . '/../../src/database/koneksi.php';
+use App\Controller\Auth\AuthLogin;
 $auth = new AuthLogin();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

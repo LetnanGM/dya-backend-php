@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+namespace App\Repository;
 
 /**
  * SEO handler: satu tempat untuk title, description, canonical, Open Graph,

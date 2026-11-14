@@ -9,9 +9,9 @@
  */
 
 declare(strict_types=1);
+use App\Repository\HandlerMail;
 
 require dirname(__DIR__) . '/src/bootstrap.php';
-require __DIR__ . '/../src/core/HandlerMail.php';
 
 $wantsJson = str_contains($_SERVER['HTTP_ACCEPT'] ?? '', 'application/json');
 

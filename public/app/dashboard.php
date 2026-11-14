@@ -1,7 +1,8 @@
 <?php
 
 declare(strict_types=1);
-require_once __DIR__ . '/../../src/core/AuthLogin.php';
+use App\Controller\Auth\AuthLogin;
+
 session_start();
 
 if (!isset($_SESSION['user_id'])) {

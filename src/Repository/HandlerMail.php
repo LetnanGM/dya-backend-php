@@ -1,7 +1,12 @@
 <?php
 
+namespace App\Repository;
 declare(strict_types=1);
+
 require_once __DIR__ . '/../database/koneksi.php';
+
+use PDO;
+use PDOException;
 
 class HandlerMail
 {

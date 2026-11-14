@@ -1,8 +1,11 @@
 <?php
 
 declare(strict_types=1);
+namespace App\Repository\User;
 require_once __DIR__ . "/../database/koneksi.php";
 require_once __DIR__ . "/RouteError.php";
+
+use PDO;
 
 class RoleChecker
 {

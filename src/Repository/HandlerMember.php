@@ -1,6 +1,13 @@
 <?php
 
 declare(strict_types=1);
+namespace App\Repository\Member;
+
+use PDO;
+use PDOException;
+use InvalidArgumentException;
+use DateTimeImmutable;
+use Throwable;
 
 /**
  * Akses data member: tabel members, member_interests, member_links, member_gallery.

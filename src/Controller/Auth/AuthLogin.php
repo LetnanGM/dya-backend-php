@@ -7,8 +7,10 @@
  * apabila database terbobol, segera tambal celah.
  */
 
+namespace App\Controller\Auth;
 declare(strict_types=1);
-require_once __DIR__ . "/HandlerUser.php";
+
+use App\Repository\User\UserManagement;
 
 class AuthLogin
 {
